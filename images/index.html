@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>胡妍静 · 产品经理</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --bg: #f4f0ec;
+            --card-bg: #fcfaf7;
+            --primary: #b5a6b6;
+            --primary-dark: #9b8a9c;
+            --primary-light: #d4c5c9;
+            --text: #4a4240;
+            --text-light: #7a6e6a;
+            --border: #e2dad5;
+            --shadow: 0 10px 30px rgba(120, 100, 100, 0.08);
+            --radius: 24px;
+            --transition: 0.25s ease;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            background-image: 
+                repeating-linear-gradient(45deg, rgba(181, 166, 182, 0.03) 0px, rgba(181, 166, 182, 0.03) 2px, transparent 2px, transparent 8px),
+                repeating-linear-gradient(135deg, rgba(181, 166, 182, 0.03) 0px, rgba(181, 166, 182, 0.03) 2px, transparent 2px, transparent 8px);
+            color: var(--text);
+            line-height: 1.6;
+            padding-top: 80px;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        img {
+            max-width: 100%;
+            display: block;
+        }
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ========== 导航栏 ========== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            background: rgba(252, 250, 247, 0.88);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border);
+            height: 72px;
+            display: flex;
+            align-items: center;
+        }
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+            color: var(--text);
+        }
+        .logo span {
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-light);
+            transition: var(--transition);
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-dark);
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        .nav-links a:hover {
+            color: var(--text);
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        .nav-links a.active {
+            color: var(--text);
+        }
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 4px;
+            background: var(--bg);
+            border-radius: 40px;
+            padding: 4px;
+            border: 1px solid var(--border);
+        }
+        .lang-btn {
+            background: transparent;
+            border: none;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .lang-btn.active {
+            background: #fff;
+            color: var(--text);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+        .lang-btn:hover {
+            color: var(--text);
+        }
+        .nav-spacer {
+            width: 72px;
+            flex: 0 0 72px;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+        .hamburger span {
+            display: block;
+            width: 26px;
+            height: 2px;
+            background: var(--text);
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        /* ========== 通用标题 ========== */
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+        .section-subtitle {
+            color: var(--text-light);
+            font-size: 1.05rem;
+            margin-bottom: 40px;
+        }
+        .section {
+            padding: 72px 0;
+        }
+        .section-alt {
+            background: rgba(252, 250, 247, 0.6);
+        }
+
+        /* ========== HERO ========== */
+        #home {
+            padding-top: 20px;
+            min-height: calc(100vh - 80px);
+            display: flex;
+            align-items: center;
+        }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .hero-content h1 {
+            font-size: 3.2rem;
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+        .hero-content h1 .highlight {
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+        .hero-content p {
+            font-size: 1.15rem;
+            color: var(--text-light);
+            max-width: 480px;
+            margin-bottom: 28px;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(181, 166, 182, 0.20);
+            color: var(--primary-dark);
+            padding: 4px 18px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+        .btn-group {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(181, 166, 182, 0.30);
+        }
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(181, 166, 182, 0.35);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--text);
+            border: 1.5px solid var(--border);
+        }
+        .btn-outline:hover {
+            border-color: var(--primary-dark);
+            color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .hero-avatar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .avatar-wrapper {
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            padding: 6px;
+            box-shadow: 0 16px 48px rgba(181, 166, 182, 0.20);
+        }
+        .avatar-wrapper img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #fff;
+        }
+
+        /* ========== 教育 & 经历卡片 ========== */
+        .entries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        #education .entries-grid {
+            grid-template-columns: 1fr;
+        }
+        .entry-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 24px 28px 28px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        .entry-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 48px rgba(120, 100, 100, 0.10);
+        }
+        .entry-card .title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+        .entry-card .meta {
+            display: flex;
+            gap: 16px;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+        .entry-card .meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .entry-card .desc {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+        .entry-card .click-hint {
+            margin-top: 12px;
+            font-size: 0.8rem;
+            color: var(--primary-dark);
+            opacity: 0.6;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* ========== 项目卡片 ========== */
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 28px;
+        }
+        .work-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+            cursor: pointer;
+        }
+        .work-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(155, 138, 156, 0.5);
+            box-shadow: 0 22px 48px rgba(112, 88, 100, 0.16);
+        }
+        .work-card .thumb {
+            aspect-ratio: 2.12 / 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            overflow: hidden;
+        }
+        .work-card .thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transform: scale(1.01);
+            transition: transform 0.6s cubic-bezier(.2,.7,.2,1), filter 0.45s ease;
+        }
+        .work-card:hover .thumb img {
+            transform: scale(1.07);
+            filter: saturate(1.06);
+        }
+        .work-card .info {
+            padding: 18px 22px 22px;
+        }
+        .work-card .info h4 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .work-card .info .tag {
+            display: inline-block;
+            background: rgba(181, 166, 182, 0.15);
+            color: var(--primary-dark);
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 2px 12px;
+            border-radius: 30px;
+            margin-bottom: 6px;
+        }
+        .work-card .info p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* ========== 核心优势卡片 ========== */
+        .teaching-scroll {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 22px;
+        }
+        .teaching-card {
+            position: relative;
+            display: flex;
+            min-width: 0;
+            flex-direction: column;
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            isolation: isolate;
+            transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+        }
+        .teaching-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            pointer-events: none;
+            background: linear-gradient(115deg, transparent 25%, rgba(255,255,255,0.5) 48%, transparent 68%);
+            transform: translateX(-120%);
+            transition: transform 0.7s ease;
+        }
+        .teaching-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(155, 138, 156, 0.55);
+            box-shadow: 0 22px 48px rgba(112, 88, 100, 0.18);
+        }
+        .teaching-card:hover::after {
+            transform: translateX(120%);
+        }
+        .teaching-card:nth-child(n+5) {
+            grid-column: span 2;
+            display: grid;
+            grid-template-columns: 1fr 1.08fr;
+            min-height: 248px;
+        }
+        .pdf-cover {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            overflow: hidden;
+            background: #eadfe2;
+        }
+        .pdf-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transform: scale(1.01);
+            filter: saturate(0.94);
+            transition: transform 0.6s cubic-bezier(.2,.7,.2,1), filter 0.45s ease;
+        }
+        .teaching-card:hover .pdf-cover img {
+            transform: scale(1.07);
+            filter: saturate(1.05);
+        }
+        .teaching-card:nth-child(n+5) .pdf-cover {
+            height: 100%;
+            aspect-ratio: auto;
+        }
+        .teaching-card .info {
+            position: relative;
+            z-index: 1;
+            flex: 1;
+            padding: 20px 22px 24px;
+            background: rgba(252, 250, 247, 0.96);
+        }
+        .teaching-card:nth-child(n+5) .info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 28px 30px;
+        }
+        .teaching-card .info h4 {
+            font-size: 1.05rem;
+            font-weight: 650;
+            margin-bottom: 8px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .teaching-card:hover .info h4 {
+            color: var(--primary-dark);
+            transform: translateX(3px);
+        }
+        .teaching-card .info .desc {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            line-height: 1.75;
+        }
+
+        /* ========== 技能 ========== */
+        .skills-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 32px 36px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+        .skill-tag {
+            background: rgba(181, 166, 182, 0.12);
+            color: var(--primary-dark);
+            padding: 6px 20px;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        .skill-tag:hover {
+            background: rgba(181, 166, 182, 0.25);
+            transform: translateY(-2px);
+        }
+
+        /* ========== 页脚 ========== */
+        .footer {
+            background: #fcfaf7;
+            border-top: 1px solid var(--border);
+            padding: 36px 0;
+            margin-top: 20px;
+        }
+        .footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .footer .socials {
+            display: flex;
+            gap: 18px;
+        }
+        .footer .socials a {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            transition: var(--transition);
+        }
+        .footer .socials a:hover {
+            color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        .footer p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* ========== 模态框 ========== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(74, 66, 64, 0.7);
+            backdrop-filter: blur(6px);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.25s ease;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        .modal-box {
+            background: var(--card-bg);
+            max-width: 720px;
+            width: 100%;
+            max-height: 90vh;
+            border-radius: var(--radius);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
+            overflow-y: auto;
+            padding: 32px 36px;
+            position: relative;
+            animation: scaleUp 0.25s ease;
+        }
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            font-size: 1.8rem;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .modal-close:hover {
+            color: var(--text);
+            transform: rotate(90deg);
+        }
+        .modal-box h2 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .modal-box .meta {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .modal-box .desc {
+            color: var(--text);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            white-space: pre-wrap;
+        }
+        .modal-box .desc .numbered-item + .numbered-item {
+            margin-top: 10px;
+        }
+        .modal-box .detail-section + .detail-section {
+            margin-top: 24px;
+        }
+        .modal-box .detail-section-title {
+            margin-bottom: 10px;
+            color: var(--primary-dark);
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes scaleUp {
+            from { transform: scale(0.92); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        /* ========== 响应式 ========== */
+        @media (max-width: 992px) {
+            .teaching-scroll { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .teaching-card:nth-child(n+5) { grid-column: span 2; }
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 40px;
+            }
+            .hero-content p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .btn-group {
+                justify-content: center;
+            }
+            .avatar-wrapper {
+                width: 220px;
+                height: 220px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body { padding-top: 68px; }
+            .navbar { height: 68px; }
+            .nav-links {
+                position: fixed;
+                top: 68px;
+                left: 0;
+                right: 0;
+                background: rgba(252, 250, 247, 0.98);
+                backdrop-filter: blur(16px);
+                flex-direction: column;
+                padding: 32px 24px;
+                gap: 20px;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
+                transform: translateY(-120%);
+                transition: var(--transition);
+                border-bottom: 1px solid var(--border);
+                align-items: flex-start;
+            }
+            .nav-links.open { transform: translateY(0); }
+            .hamburger { display: flex; }
+            .hero-content h1 { font-size: 2.4rem; }
+            .section-title { font-size: 1.8rem; }
+            .entries-grid { grid-template-columns: 1fr; }
+            .works-grid { grid-template-columns: 1fr; }
+            .teaching-scroll { grid-template-columns: 1fr; gap: 18px; }
+            .teaching-card:nth-child(n+5) {
+                grid-column: auto;
+                display: flex;
+                min-height: 0;
+            }
+            .teaching-card:nth-child(n+5) .pdf-cover {
+                height: auto;
+                aspect-ratio: 4 / 3;
+            }
+            .teaching-card:nth-child(n+5) .info { padding: 20px 22px 24px; }
+            .footer .container { flex-direction: column; text-align: center; }
+            .nav-spacer { display: none; }
+        }
+
+        @media (max-width: 480px) {
+            .teaching-card .info,
+            .teaching-card:nth-child(n+5) .info { padding: 18px 18px 22px; }
+            .btn { padding: 10px 20px; font-size: 0.85rem; }
+            .container { padding: 0 16px; }
+            .avatar-wrapper { width: 160px; height: 160px; }
+            .modal-box { padding: 24px 18px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .teaching-card,
+            .teaching-card::after,
+            .teaching-card .pdf-cover img,
+            .teaching-card .info h4 { transition: none; }
+            .teaching-card:hover { transform: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== 导航栏 ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="#home" class="logo">HYJ<span>.</span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="active" data-i18n="nav.home">首页</a></li>
+                <li><a href="#education" data-i18n="nav.education">教育</a></li>
+                <li><a href="#experience" data-i18n="nav.experience">经历</a></li>
+                <li><a href="#projects" data-i18n="nav.projects">项目</a></li>
+                <li><a href="#skills" data-i18n="nav.skills">技能</a></li>
+                <li><a href="#contact" data-i18n="nav.contact">联系</a></li>
+            </ul>
+            <span class="nav-spacer" aria-hidden="true"></span>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <section id="home" class="section">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <div class="hero-badge" data-i18n="hero.badge">✦ 产品经理 · HR SaaS · AI</div>
+                <h1>
+                    <span data-i18n="hero.greeting">你好，我是</span><br />
+                    <span class="highlight" data-i18n="hero.name">胡妍静</span>
+                </h1>
+                <p data-i18n="hero.desc">11年工作经验，其中6年产品经理经验、4年HR业务经验。聚焦HR SaaS、全面薪酬、多地区本地化、海外人力服务与AI产品落地，求职意向为上海产品经理。</p>
+                <div class="btn-group">
+        
+                    <a href="#education" class="btn btn-primary" data-i18n="hero.btn_edu">教育</a>
+                    <a href="#experience" class="btn btn-outline" data-i18n="hero.btn_exp">经历</a>
+                    <a href="#projects" class="btn btn-outline" data-i18n="hero.btn_proj">项目</a>
+                </div>
+            </div>
+            <div class="hero-avatar">
+                <div class="avatar-wrapper">
+                    <img src="images/portrait.jpg" alt="Professional portrait of HU Yanjing" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 教育背景 ===== -->
+    <section id="education" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title" data-i18n="education.title">教育背景</h2>
+            <div class="entries-grid" id="educationGrid"></div>
+        </div>
+    </section>
+
+    <!-- ===== 工作经历 ===== -->
+    <section id="experience" class="section">
+        <div class="container">
+            <h2 class="section-title" data-i18n="experience.title">工作经历</h2>
+            <div class="entries-grid" id="experienceGrid"></div>
+        </div>
+    </section>
+
+    <!-- ===== 项目 ===== -->
+    <section id="projects" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title" data-i18n="projects.title">项目经历</h2>
+            <div class="works-grid" id="projectsGrid"></div>
+        </div>
+    </section>
+
+    <!-- ===== 核心优势 ===== -->
+    <section id="teaching" class="section">
+        <div class="container">
+            <h2 class="section-title" data-i18n="teaching.title">核心优势</h2>
+            <div class="teaching-scroll" id="teachingContainer"></div>
+        </div>
+    </section>
+
+    <!-- ===== 技能 ===== -->
+    <section id="skills" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title" data-i18n="skills.title">技能与证书</h2>
+            <div class="skills-wrapper" id="skillsContainer"></div>
+        </div>
+    </section>
+
+    <!-- ===== 页脚 ===== -->
+    <footer id="contact" class="footer">
+        <div class="container">
+            <div>
+                <p data-i18n="footer.copy">&copy; 2026 胡妍静 · 产品经理</p>
+                <p data-i18n="footer.location">上海 · 电话：18521096013 · 邮箱：18521096013@163.com</p>
+            </div>
+            <div class="socials">
+                <a href="tel:18521096013" aria-label="致电胡妍静"><i class="fas fa-phone"></i></a>
+                <a href="mailto:18521096013@163.com" aria-label="邮件联系胡妍静"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== 模态框 ===== -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-box" id="modalBox">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <h2 id="modalTitle"></h2>
+            <div class="meta" id="modalMeta"></div>
+            <div class="desc" id="modalDesc"></div>
+        </div>
+    </div>
+
+    <!-- ===== JavaScript ===== -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ===== 多语言数据 =====
+            const i18n = {
+                en: {
+                    nav: { home: 'Home', education: 'Education', experience: 'Experience', projects: 'Projects', teaching: 'Strengths', skills: 'Skills', contact: 'Contact' },
+                    hero: { badge: '✦ Product Manager · HR SaaS · AI', greeting: "Hi, I'm", name: 'HU Yanjing', desc: 'Product manager with 11 years of experience, including 6 years in product management and 4 years in HR operations. Focused on HR SaaS, payroll, multi-country localization, overseas employment services, and applied AI. Seeking a product manager role in Shanghai.', btn_edu: 'Education', btn_exp: 'Experience', btn_proj: 'Projects' },
+                    education: { title: 'Education', sub: 'Academic background and selected honors.' },
+                    experience: { title: 'Work Experience', sub: 'HR operations, HR SaaS products, and global workforce solutions.' },
+                    projects: { title: 'Projects', sub: 'Selected project experience.' },
+                    teaching: { title: 'Core Strengths', sub: 'Industry knowledge, product delivery, AI application, and execution.' },
+                    skills: { title: 'Skills & Certifications', sub: 'Product methods, domain expertise, tools, and language qualifications.' },
+                    card: { details: 'Click for details', project: 'Project' },
+                    footer: { copy: '© 2026 HU Yanjing · Product Manager', location: 'Shanghai · Phone: 18521096013 · Email: 18521096013@163.com' }
+                },
+                zh: {
+                    nav: { home: '首页', education: '教育', experience: '经历', projects: '项目', teaching: '优势', skills: '技能', contact: '联系' },
+                    hero: { badge: '✦ 产品经理 · HR SaaS · AI', greeting: '你好，我是', name: '胡妍静', desc: '11年工作经验，其中6年产品经理经验、4年HR业务经验。聚焦HR SaaS、全面薪酬、多地区本地化、海外人力服务与AI产品落地，求职意向为上海产品经理。', btn_edu: '教育', btn_exp: '经历', btn_proj: '项目' },
+                    education: { title: '教育背景', sub: '学历背景与主要荣誉。' },
+                    experience: { title: '工作经历', sub: 'HR实务、HR SaaS产品与海外人力解决方案经验。' },
+                    projects: { title: '项目经历', sub: '代表性项目经历。' },
+                    teaching: { title: '核心优势', sub: '行业理解、产品落地、AI应用与执行能力。' },
+                    skills: { title: '技能与证书', sub: '产品方法、领域能力、工具与语言资质。' },
+                    card: { details: '点击查看详情', project: '项目' },
+                    footer: { copy: '© 2026 胡妍静 · 产品经理', location: '上海 · 电话：18521096013 · 邮箱：18521096013@163.com' }
+                },
+                proj2: {
+                    en: { title: 'Overseas EOR Needs Research and Project Delivery', meta: '苏州英格玛人力资源有限公司 · Project dates not separately provided', desc: `Content:\n1. Responsible for overseas foreign labor cooperation and EOR needs research and project implementation; coordinated actual project operations and delivery based on local regulatory requirements and supplier solutions.\n\nAchievements:\n1. Led overseas EOR needs research and project implementation; drove actual project operations based on local regulations and supplier solutions, ensuring compliant overseas employment and delivery implementation.` },
+                    zh: { title: '海外EOR需求调研与项目落地', meta: '苏州英格玛人力资源有限公司 · 项目时间未单独提供', desc: `内容：\n1. 负责海外对外劳务合作及 EOR 需求调研与项目落地，结合当地法规要求与供应商方案，统筹项目实际运营与交付。\n\n业绩：\n1. 主导海外 EOR 需求调研与项目落地，结合当地法规及供应商方案推动项目实际运营，保障海外用工合规与交付落地。` },
+                    images: []
+                },
+                proj3: {
+                    en: { title: 'Overseas Employee Full-Lifecycle Operations SOP', meta: '苏州英格玛人力资源有限公司 · Project dates not separately provided', desc: `Content:\n1. Established an overseas employee full-lifecycle operations SOP covering key stages such as onboarding, payroll, and offboarding, ensuring the standardization and reusability of overseas delivery.\n\nAchievements:\n1. Organized and established an overseas employee full-lifecycle operations SOP; standardized onboarding, payroll, offboarding, and other processes; improved the consistency and reusability of overseas delivery; and provided standardized support for multi-country business replication.` },
+                    zh: { title: '海外员工全生命周期运营SOP', meta: '苏州英格玛人力资源有限公司 · 项目时间未单独提供', desc: `内容：\n1. 建立海外员工全生命周期运营 SOP，覆盖入职、薪酬、离职等关键环节，保障海外交付的规范性与可复用性。\n\n业绩：\n1. 梳理并建立海外员工全生命周期运营 SOP，统一入职、薪酬、离职等标准流程，提升海外交付一致性与可复用性，为多国业务复制提供标准化支撑。` },
+                    images: []
+                },
+                proj4: {
+                    en: { title: 'Vietnam and Malaysia Overseas Service Supplier Resource Pool', meta: '苏州英格玛人力资源有限公司 · Project dates not separately provided', desc: `Content:\n1. Responsible for sourcing, evaluating, and building a resource pool of overseas service providers in Vietnam, Malaysia, and other markets; assessed supplier service capabilities and coverage across EOR / HRO / GPO / recruitment.\n\nAchievements:\n1. Completed sourcing and evaluation of overseas service providers in Vietnam and Malaysia across EOR / HRO / GPO / recruitment; successfully selected and implemented local recruitment and EOR service providers; built a continuously reusable supplier resource pool to support the rapid launch of overseas business.` },
+                    zh: { title: '越南、马来西亚海外服务供应商资源库', meta: '苏州英格玛人力资源有限公司 · 项目时间未单独提供', desc: `内容：\n1. 负责越南、马来西亚等海外服务供应商寻源、评估与资源库建设，围绕 EOR / HRO / GPO / 招聘等类型评估供应商服务能力与覆盖范围。\n\n业绩：\n1. 完成越南、马来西亚海外服务供应商寻源与评估，覆盖 EOR / HRO / GPO / 招聘等类型，成功筛选并落地两地招聘及 EOR 服务供应商，建成可持续调用的供应商资源库，支撑海外业务快速启动。` },
+                    images: []
+                },
+                proj5: {
+                    en: { title: 'Overseas HR Services Mini Program', meta: '苏州英格玛人力资源有限公司 · Project dates not separately provided', desc: `Content:\n1. Responsible for product planning and development of an overseas HR services mini program; identified target users and core usage scenarios; designed functions for requirement consultation, case showcases, service capability introductions, country knowledge lookup, and employment cost calculation, while also considering internal sales and operations needs.\n\nAchievements:\n1. Independently completed the application, development, and deployment of the overseas HR services mini program from 0 to 1; delivered core functions including requirement consultation, case showcases, service capability introductions, country knowledge lookup, and employment cost calculation, while considering internal sales and operations needs; launched it as an online channel for overseas service promotion and client requirement collection.` },
+                    zh: { title: '海外人力服务小程序', meta: '苏州英格玛人力资源有限公司 · 项目时间未单独提供', desc: `内容：\n1. 负责海外人力服务小程序的产品规划与建设，梳理目标用户与核心使用场景，设计需求咨询、案例展示、服务能力介绍、国家知识查询、用工成本测算等功能，并兼顾内部销售与运营使用需求。\n\n业绩：\n1. 从 0 到 1 独立完成海外人力服务小程序申请、开发与部署，落地需求咨询、案例展示、服务能力介绍、国家知识查询、用工成本测算等核心功能，同时兼顾内部销售与运营使用诉求，已作为海外服务产品宣传和客户需求搜集的线上渠道投入使用。` },
+                    images: []
+                },
+                proj6: {
+                    en: { title: 'Overseas Service Management Platform Research and Solution Design', meta: '苏州英格玛人力资源有限公司 · Project dates not separately provided', desc: `Content:\n1. Responsible for research and solution design for an overseas service management platform; based on Yinggema's overseas expansion progress and client needs, produced product use cases, functional architecture, functional flows, MVP and phased planning, prototypes, and high-fidelity designs.\n\nAchievements:\n1. Systematically researched overseas service management platforms and completed a comparative analysis across dimensions such as users and objectives; based on Yinggema's overseas expansion progress, produced the MVP and phased plan; completed use cases, functional architecture, functional flow design, MVP product prototypes, and high-fidelity designs, providing a complete implementation blueprint for platform development.` },
+                    zh: { title: '海外服务管理平台调研与方案设计', meta: '苏州英格玛人力资源有限公司 · 项目时间未单独提供', desc: `内容：\n1. 负责海外服务管理平台调研与方案设计，结合英格玛出海进度及客户需求，输出产品用例、功能架构、功能流程、MVP 及分期规划、原型与高保真设计。\n\n业绩：\n1. 系统调研海外服务管理平台，从用户、目标等维度完成对比分析，结合英格玛出海进度输出 MVP 及分期计划，完成用例、功能架构、功能流程设计及 MVP 产品原型图、高保真图，为平台建设提供完整落地蓝图。` },
+                    images: []
+                },
+                proj7: {
+                    en: { title: 'Thailand and Vietnam Labor Compliance RAG Knowledge Base', meta: '苏州英格玛人力资源有限公司 · Project dates not separately provided', desc: `Content:\n1. Responsible for developing labor-law and employment-model knowledge systems for Thailand and Vietnam; organized compliance knowledge content frameworks, built a RAG knowledge base, and drove its production launch.\n\nAchievements:\n1. Built Thailand and Vietnam labor-law and employment-model knowledge bases; collected and organized original local compliance legal provisions; established eight knowledge content frameworks covering onboarding and offboarding, immigration, contracts, payroll, and other areas; independently learned PDF extraction, chunking, and prompt adjustment; used Dify to build a RAG knowledge base; developed a reusable compliance knowledge system; and successfully embedded it in the overseas mini program for live service.` },
+                    zh: { title: '泰国、越南劳动合规RAG知识库', meta: '苏州英格玛人力资源有限公司 · 项目时间未单独提供', desc: `内容：\n1. 负责泰国、越南劳动法规与用工模式知识体系建设，梳理合规知识内容框架，搭建 RAG 知识底座并推动上线应用。\n\n业绩：\n1. 搭建泰国、越南劳动法规与用工模式知识库，搜集整理当地合规法律条文原件，梳理入离职、出入境、合同、薪酬等 8 大知识内容框架，自学 PDF 提取、Chunk 分段、Prompt 调整，使用 Dify 搭建 RAG 知识底座，沉淀可复用的合规知识体系，并成功嵌入海外小程序上线服务。` },
+                    images: []
+                },
+                proj8: {
+                    en: { title: 'Mainland China Total Rewards Product', meta: '上海易路软件有限公司 · Project dates not separately provided', desc: `Content:\n1. Managed the daily product requirements backlog: requirement collection, organization, analysis, and prioritization.\n2. Responsible for product feature design and iteration, competitive analysis, PRD writing, and prototype design.\n3. Worked closely with relevant teams, followed up on UI interaction design, backend development, and frontend development, and conducted product acceptance before launch throughout testing and release.\n\nAchievements:\n1. Built highly reusable core modules: led product requirement analysis for the three essential modules of social insurance, payroll, and individual income tax; designed and delivered highly configurable functions; successfully adapted the product to clients across different industries and company sizes; and enabled clients to achieve a fully online closed loop for payroll operations.\n2. Established an agile policy-response mechanism: created a standardized process from policy interpretation to product implementation for new individual income tax and social insurance policies; completed requirement analysis and solution design within an average of 10 working days, ensuring continued leadership in product compliance.\n3. Achieved zero-risk client implementation: dynamically scheduled iterations around client payroll cycles to ensure new-policy functions launched before critical payroll dates; all clients transitioned seamlessly, payroll and filing amounts remained 100% accurate, and zero errors and zero complaints were achieved while clients benefited from the policies.` },
+                    zh: { title: '大陆地区全面薪酬产品', meta: '上海易路软件有限公司 · 项目时间未单独提供', desc: `内容：\n1. 负责日常产品需求池管理：需求的收集，梳理，分析，排优先级。\n2. 负责产品功能设计与迭代，竞品分析，prd 文档撰写、原型设计。\n3. 与相关团队紧密合作，跟进 ui 交互设计，后端开发，前端开发，上线前对产品进行验收，测试上线全过程。\n\n业绩：\n1. 打造高通用性核心模块：主导社保、薪资、个税三大刚需模块产品需求分析，设计和落地高度可配置的功能，产品成功适配不同行业、不同体量客户，助力客户实现薪酬业务100%线上化闭环。\n2. 建立政策敏捷响应机制：针对个税、社保新政，建立从政策解读到产品落地的标准化流程，平均在10个工作日内完成需求分析与方案设计，保障产品合规性持续领先。\n3. 实现客户业务零风险落地：基于客户薪资周期动态排期迭代，确保新政功能在关键算薪时点前上线。所有客户均无缝过渡，在享受政策红利的同时，保障算薪、申报金额100%准确，实现零差错、零投诉。` },
+                    images: []
+                },
+                proj9: {
+                    en: { title: 'Greater China and Southeast Asia HR System Localization', meta: '上海易路软件有限公司 · Project dates not separately provided', desc: `Content:\n1. Conducted in-depth research into the actual business of enterprise HR teams, managers, and employees in Greater China and Southeast Asia, translating it into requirements and implementation solutions.\n2. Expanded and supported region-specific information in the existing system; transformed and optimized existing functions to accommodate special employee information, religious information, special holidays, and other local requirements while balancing system standardization and flexibility.\n3. Designed dedicated interfaces and processes for HR teams, employees, and managers in each region.\n4. Managed system compliance risks to ensure the product complied with local data security laws, labor laws, and policies.\n\nAchievements:\n1. Global planning and foundation building: independently completed in-depth research into policies, compliance, and market environments in five target markets - Vietnam, Malaysia, Singapore, Taiwan, and Macao - and developed clear localization solutions and implementation paths for system setup in each region.\n2. Phased implementation and successful delivery: completed system deployment, configuration, and setup across Greater China and Southeast Asia from 0 to 1; the Vietnam system launched first and served end clients with 100% payroll accuracy and 100% policy compliance; the systems for Malaysia, Singapore, Taiwan, and Macao were also delivered to clients and successfully passed project acceptance.` },
+                    zh: { title: '大中华及东南亚地区HR系统本地化', meta: '上海易路软件有限公司 · 项目时间未单独提供', desc: `内容：\n1. 深入研究大中华及东南亚地区企业HR，管理者和员工的真实业务，转化成需求和落地方案。\n2. 负责在现有系统中拓展并兼容各地区特有信息，改造和优化其现有功能，使其兼容各地区特殊的员工信息，宗教信息，特殊的节假日等，平衡系统的标准化与灵活性。\n3. 设计各地区hr，员工，管理者专属界面和流程。\n4. 系统合规性防控，确保产品符合各地数据安全法，劳动法和政策。\n\n业绩：\n1. 全局规划与基础搭建：独立完成了越南、马来西亚、新加坡、台湾、澳门五个目标市场的政策、合规与市场环境深度调研，为各地区的系统搭建制定了清晰的本地化方案与实施路径。\n2. 分步落地与成功交付：从0-1完成大中华和东南亚地区的系统部署，配置和搭建，目前，越南系统已率先成功上线并服务终端客户，薪资发放准确率100%，政策合规100%。马来西亚、新加坡、台湾、澳门的系统也已全部交付至客户，顺利完成项目验收。` },
+                    images: []
+                }
+            };
+
+            // ===== 所有条目详情 =====
+            const entryDetails = {
+                edu1: {
+                    en: { title: 'B.A. in Sociology', meta: 'Shanghai Institute of Technology · 2011-2015', desc: `Campus roles: Secretary-General of the Student Union Secretariat; member of the student discipline inspection team; student mentor for the 2013 cohort, assisting the counselor with student affairs.\n\nHonors: eight university scholarships; Outstanding Student twice; Outstanding Graduate; Third Prize, Category C, 2013 National English Competition for College Students; National Encouragement Scholarship (2013-2014); National Scholarship (2014).` },
+                    zh: { title: '社会学 本科', meta: '上海应用技术大学 · 2011-2015', desc: `所任职务：校学生会秘书处秘书长，负责各类学校活动发文；学校学生纪检队队员，负责勤工助学检查；13级学生班导师，协助辅导员处理学生事务。\n\n所获荣誉：8次校级奖学金；2次校级优秀学生；1次校级优秀毕业生；2013年度全国大学生英语竞赛C类三等奖；2013-2014学年度国家励志奖学金；2014年度国家奖学金。` },
+                    images: []
+                },
+                work1: {
+                    en: { title: 'Product Solutions Manager', meta: '苏州英格玛人力资源有限公司 · Mar 2026-Present', desc: `Responsibilities:\n1. Responsible for overseas foreign labor cooperation and EOR needs research and project implementation; coordinated actual project operations and delivery based on local regulatory requirements and supplier solutions.\n2. Established an overseas employee full-lifecycle operations SOP covering key stages such as onboarding, payroll, and offboarding, ensuring the standardization and reusability of overseas delivery.\n3. Responsible for sourcing, evaluating, and building a resource pool of overseas service providers in Vietnam, Malaysia, and other markets; assessed supplier service capabilities and coverage across EOR / HRO / GPO / recruitment.\n4. Responsible for product planning and development of an overseas HR services mini program; identified target users and core usage scenarios; designed functions for requirement consultation, case showcases, service capability introductions, country knowledge lookup, and employment cost calculation, while also considering internal sales and operations needs.\n5. Responsible for research and solution design for an overseas service management platform; based on Yinggema's overseas expansion progress and client needs, produced product use cases, functional architecture, functional flows, MVP and phased planning, prototypes, and high-fidelity designs.\n6. Responsible for developing labor-law and employment-model knowledge systems for Thailand and Vietnam; organized compliance knowledge content frameworks, built a RAG knowledge base, and drove its production launch.\n\nAchievements:\n1. Led overseas EOR needs research and project implementation; drove actual project operations based on local regulations and supplier solutions, ensuring compliant overseas employment and delivery implementation.\n2. Organized and established an overseas employee full-lifecycle operations SOP; standardized onboarding, payroll, offboarding, and other processes; improved the consistency and reusability of overseas delivery; and provided standardized support for multi-country business replication.\n3. Completed sourcing and evaluation of overseas service providers in Vietnam and Malaysia across EOR / HRO / GPO / recruitment; successfully selected and implemented local recruitment and EOR service providers; built a continuously reusable supplier resource pool to support the rapid launch of overseas business.\n4. Independently completed the application, development, and deployment of the overseas HR services mini program from 0 to 1; delivered core functions including requirement consultation, case showcases, service capability introductions, country knowledge lookup, and employment cost calculation, while considering internal sales and operations needs; launched it as an online channel for overseas service promotion and client requirement collection.\n5. Systematically researched overseas service management platforms and completed a comparative analysis across dimensions such as users and objectives; based on Yinggema's overseas expansion progress, produced the MVP and phased plan; completed use cases, functional architecture, functional flow design, MVP product prototypes, and high-fidelity designs, providing a complete implementation blueprint for platform development.\n6. Built Thailand and Vietnam labor-law and employment-model knowledge bases; collected and organized original local compliance legal provisions; established eight knowledge content frameworks covering onboarding and offboarding, immigration, contracts, payroll, and other areas; independently learned PDF extraction, chunking, and prompt adjustment; used Dify to build a RAG knowledge base; developed a reusable compliance knowledge system; and successfully embedded it in the overseas mini program for live service.` },
+                    zh: { title: '产品解决方案经理', meta: '苏州英格玛人力资源有限公司 · 2026.03-至今', desc: `内容：\n1. 负责海外对外劳务合作及 EOR 需求调研与项目落地，结合当地法规要求与供应商方案，统筹项目实际运营与交付。\n2. 建立海外员工全生命周期运营 SOP，覆盖入职、薪酬、离职等关键环节，保障海外交付的规范性与可复用性。\n3. 负责越南、马来西亚等海外服务供应商寻源、评估与资源库建设，围绕 EOR / HRO / GPO / 招聘等类型评估供应商服务能力与覆盖范围。\n4. 负责海外人力服务小程序的产品规划与建设，梳理目标用户与核心使用场景，设计需求咨询、案例展示、服务能力介绍、国家知识查询、用工成本测算等功能，并兼顾内部销售与运营使用需求。\n5. 负责海外服务管理平台调研与方案设计，结合英格玛出海进度及客户需求，输出产品用例、功能架构、功能流程、MVP 及分期规划、原型与高保真设计。\n6. 负责泰国、越南劳动法规与用工模式知识体系建设，梳理合规知识内容框架，搭建 RAG 知识底座并推动上线应用。\n\n业绩：\n1. 主导海外 EOR 需求调研与项目落地，结合当地法规及供应商方案推动项目实际运营，保障海外用工合规与交付落地。\n2. 梳理并建立海外员工全生命周期运营 SOP，统一入职、薪酬、离职等标准流程，提升海外交付一致性与可复用性，为多国业务复制提供标准化支撑。\n3. 完成越南、马来西亚海外服务供应商寻源与评估，覆盖 EOR / HRO / GPO / 招聘等类型，成功筛选并落地两地招聘及 EOR 服务供应商，建成可持续调用的供应商资源库，支撑海外业务快速启动。\n4. 从 0 到 1 独立完成海外人力服务小程序申请、开发与部署，落地需求咨询、案例展示、服务能力介绍、国家知识查询、用工成本测算等核心功能，同时兼顾内部销售与运营使用诉求，已作为海外服务产品宣传和客户需求搜集的线上渠道投入使用。\n5. 系统调研海外服务管理平台，从用户、目标等维度完成对比分析，结合英格玛出海进度输出 MVP 及分期计划，完成用例、功能架构、功能流程设计及 MVP 产品原型图、高保真图，为平台建设提供完整落地蓝图。\n6. 搭建泰国、越南劳动法规与用工模式知识库，搜集整理当地合规法律条文原件，梳理入离职、出入境、合同、薪酬等 8 大知识内容框架，自学 PDF 提取、Chunk 分段、Prompt 调整，使用 Dify 搭建 RAG 知识底座，沉淀可复用的合规知识体系，并成功嵌入海外小程序上线服务。` },
+                    images: []
+                },
+                work2: {
+                    en: { title: 'Product Manager', meta: '上海易路软件有限公司 · Sep 2019-Present', desc: `Mainland China total rewards: Managed the product requirement backlog, including collection, analysis, prioritization, competitive research, PRDs, prototypes, delivery acceptance, and the full release process with UI, backend, frontend, and testing teams. Led configurable social insurance, payroll, and individual income tax modules that supported clients across industries and company sizes and enabled fully online payroll workflows. Established a standardized policy-response process, typically completing analysis and solution design within 10 working days. Scheduled releases around client payroll cycles; all customers transitioned without disruption, with 100% payroll and filing accuracy and zero errors or complaints.\n\nGreater China and Southeast Asia: Researched real HR, manager, and employee workflows; localized employee data, religion-related information, holidays, interfaces, and processes while balancing standardization and flexibility. Ensured compliance with local data security, labor laws, and policies. Independently researched Vietnam, Malaysia, Singapore, Taiwan, and Macao and created localization and implementation paths. Delivered deployments across all five markets: Vietnam went live for end clients with 100% payroll accuracy and compliance, while Malaysia, Singapore, Taiwan, and Macao passed client acceptance.` },
+                    zh: { title: '产品经理', meta: '上海易路软件有限公司 · 2019.09-至今', desc: `• 大陆地区全面薪酬产品经理\n\n1.负责日常产品需求池管理：需求的收集，梳理，分析，排优先级。\n\n2.负责产品功能设计与迭代，竞品分析，prd 文档撰写、原型设计。\n\n3.与相关团队紧密合作，跟进 ui 交互设计，后端开发，前端开发，上线前对产品进行验收，测试上线全过程。\n\n• 取得成果\n\n打造高通用性核心模块：主导社保、薪资、个税三大刚需模块产品需求分析，设计和落地高度可配置的功能，产品成功适配不同行业、不同体量客户，助力客户实现薪酬业务100%线上化闭环。\n\n建立政策敏捷响应机制：针对个税、社保新政，建立从政策解读到产品落地的标准化流程，平均在10个工作日内完成需求分析与方案设计，保障产品合规性持续领先。\n\n实现客户业务零风险落地：基于客户薪资周期动态排期迭代，确保新政功能在关键算薪时点前上线。所有客户均无缝过渡，在享受政策红利的同时，保障算薪、申报金额100%准确，实现零差错、零投诉。\n\n• 大中华及东南亚地区产品经理\n\n1.深入研究大中华及东南亚地区企业HR，管理者和员工的真实业务，转化成需求和落地方案\n\n2.负责在现有系统中拓展并兼容各地区特有信息，改造和优化其现有功能，使其兼容各地区特殊的员工信息，宗教信息，特殊的节假日等，平衡系统的标准化与灵活性\n\n3.设计各地区hr，员工，管理者专属界面和流程\n\n4.系统合规性防控，确保产品符合各地数据安全法，劳动法和政策\n\n• 取得成果\n\n全局规划与基础搭建：独立完成了越南、马来西亚、新加坡、台湾、澳门五个目标市场的政策、合规与市场环境深度调研，为各地区的系统搭建制定了清晰的本地化方案与实施路径。\n\n分步落地与成功交付：从0-1完成大中华和东南亚地区的系统部署，配置和搭建，目前，越南系统已率先成功上线并服务终端客户，薪资发放准确率100%，政策合规100%。马来西亚、新加坡、台湾、澳门的系统也已全部交付至客户，顺利完成项目验收。` },
+                    images: []
+                },
+                work3: {
+                    en: { title: 'Senior HRSSC Specialist', meta: '游族网络股份有限公司 · Jul 2017-Sep 2019', desc: `Responsibilities:\nDomestic HR operations: annual leave calculation, leave statistics, exception handling, monthly/quarterly/annual attendance analysis and reporting; work permits, employment certificates and residence permits for foreign employees; residence permits, Shanghai household-registration transfers, and other household matters; negotiated termination cases, severance calculations, employee satisfaction surveys, summaries, feedback, and improvement proposals.\n\nOverseas HR operations: Coordinated with local HR outsourcing suppliers on compliant onboarding, offboarding, adjustments, transfers, and work permits for foreign employees across overseas subsidiaries.` },
+                    zh: { title: '高级HRSSC专员', meta: '游族网络股份有限公司 · 2017.07-2019.09', desc: `内容：\n1. 国内人事管理-假勤管理：员工年休假的计算；休假数据统计；特殊假期的处理；每月、每季、每年度考勤分析；考勤报表制作。\n2. 国内人事管理-证件办理：外籍人员就业许可、就业证及居留许可办理；员工居住证及居转户办理；员工各类户口办理。\n3. 国内人事管理-员工关系：员工协商解除谈判，协商解除赔偿金计算、员工满意度调查、总结及反馈、提出合理的改进建议。\n4. 海外人事管理：与各国人事外包供应商对接，各国分公司入职、离职、调整、转签等合法化操作。\n5. 海外人事管理：与各国人事外包供应商对接，各国分公司外籍员工工作证办理。` },
+                    images: []
+                },
+                work4: {
+                    en: { title: 'HR Specialist', meta: '澜起科技股份有限公司 · Mar 2015-Jun 2017', desc: `Joined as an intern in March 2015 and became a full-time employee in July 2015.\n\nHR operations: Coordinated pre-onboarding tasks; handled onboarding, employment registration, offboarding, leave settlement, and termination filings; managed leave and attendance calculations, statistics, exceptions, analysis, and reports; processed employment and residence permits for foreign employees, residence permits and household-registration transfers, and business visas; administered supplemental commercial insurance; managed employment-contract renewals and probation interviews.\n\nCompany culture: Coordinated gifts and activities for Mid-Autumn Festival and International Women's Day, spring and autumn outings, annual meetings, family days, and company trips.` },
+                    zh: { title: 'HR专员', meta: '澜起科技股份有限公司 · 2015.03-2017.06', desc: `内容：\n1. 2015年3月进入该公司实习，2015年7月转正。\n2. HR 实操工作-入离职：员工入之前协调工作、入职办理、招工用工、离职办理、离职假期结算、退工。\n3. HR 实操工作-假期及考勤管理：员工年休假的计算；休假数据统计；特殊假期的处理；每月、每季、每年度考勤分析；考勤报表制作。\n4. HR 实操工作-证件办理：外籍人员就业许可、就业证及居留许可办理；员工居住证及居转户办理；员工出差签证办理。\n5. HR 实操工作-商业保险：员工补充商业保险加减保变更；商业保险员工疑问解答。\n6. HR 实操工作-合同、试用期管理：新入职员工合同续签；老员工续签意向征询、合同续签；员工试用期面谈及管理。\n7. 企业文化建设：中秋、三八妇女节等奖品选购；春秋游活动报名及协调。\n8. 企业文化建设：公司年会活动、家庭日、公司旅游组织及协调。` },
+                    images: []
+                },
+                proj1: {
+                    en: { title: 'Vietnam HR System Localization and Rollout', meta: 'Solution Expert & Implementation · Jun-Dec 2025', desc: `Extended an existing HR SaaS platform to support local Vietnamese employees and expatriates.\n\n1. Researched Vietnamese labor law, social insurance, taxation, and expatriate-management rules; analyzed client workflows and pain points; defined changes for attendance, payroll tax, social insurance, and expatriate benefits.\n2. Led localization of the core system, including Vietnamese-language UI, statutory holidays, working-time rules, and separate employee-record categories for local and expatriate staff.\n3. Wrote the administrator manual, delivered online training, and supported the Vietnam team during initial operations.\n\nResults: The system launched successfully and continues to operate, with 100% employee-data and payroll-data accuracy.` },
+                    zh: { title: '越南人力资源系统搭建及落地', meta: '解决方案专家及实施 · 2025.06-2025.12', desc: `项目简述：扩展现有HR SaaS系统，使其满足越南本土员工及外派人员的HR业务管理需求。\n\n1. 调研越南劳动法规、社保税务政策及外派人员管理规则，梳理客户流程和痛点，明确考勤核算、薪酬计税、社保缴纳、外派福利等模块的改造方向。\n2. 主导核心功能本地化，完成越南语界面、法定节假日、工时规则与外派人员档案分类管理，兼容本土员工和外派人员的双重HR流程。\n3. 编写管理员操作手册并开展线上培训，协助越南团队完成上线初期运维。\n\n业绩：项目成功上线并持续运行，员工数据和薪资数据准确率100%。` },
+                    images: []
+                },
+                proj2: {
+                    en: { title: 'Payroll System Implementation and Customization for a Large Internet Company', meta: 'Product & Implementation', desc: `Content:\n1. Researched the client's payroll operations and calculation processes; documented payroll items, calculation rules, pay cycles, and adaptation requirements.\n2. Designed implementation solutions for payroll, social insurance, and individual income tax modules.\n3. For business scenarios not covered by the standard product, analyzed customization requirements and designed product solutions; translated business needs into functional designs, business rules, and system logic, and collaborated with engineering through delivery.\n\nAchievements:\nThe project launched successfully and remained stable, supporting large-scale employee payroll calculation. Delivered multiple complex payroll rules and customization requirements while ensuring payroll and employee-data accuracy.` },
+                    zh: { title: '大型互联网企业薪酬系统实施及客制化项目', meta: '产品兼实施', desc: `内容：\n1. 调研客户薪酬业务现状及核算流程，梳理薪资项目、计算规则、发薪周期，适配需求。\n2. 负责薪酬、社保、个税模块实施方案设计。\n3. 针对标准产品无法覆盖的业务场景，负责客制化需求分析及产品方案设计，将业务需求转化为功能方案、业务规则及系统逻辑，并协同研发完成开发落地。\n\n业绩：\n项目成功上线并稳定运行，支持大规模员工薪酬核算场景；完成多项复杂薪酬规则及客制化需求落地，保障薪酬计算与员工数据准确性。` },
+                    images: []
+                },
+                proj3: {
+                    en: { title: 'New Individual Income Tax Implementation for a Fitness Chain', meta: 'Product & Implementation', desc: `Content:\n1. Interpreted individual income tax policy, documented cumulative withholding rules, and analyzed the impact of the new tax law on the existing payroll system.\n2. Researched the client's current tax processes and aligned data definitions for employee income, social insurance, housing provident fund, special deductions, and tax filing.\n3. Configured tax calculation rules and system parameters; supported the production cutover and initialization of employee tax data, followed by post-launch tax reconciliation and exception troubleshooting.\n\nAchievements:\nCompleted the new-tax-law system cutover and launch, ensuring a smooth transition between the old and new tax regimes. The calculation logic complied with policy requirements and supported stable payroll and tax filing thereafter.` },
+                    zh: { title: '连锁运动企业新税法个税实施项目', meta: '产品兼实施', desc: `内容：\n1. 根据个人所得税政策，梳理累计预扣法规则，分析新税法对现有薪酬系统的影响。\n2. 调研客户现有个税业务流程，梳理员工收入、社保公积金、专项扣除及个税申报相关数据口径。\n3. 负责个税计算规则及系统参数配置，协助完成新税法上线切换及员工个税数据初始化，支持上线后的税额核对及异常排查。\n\n业绩：\n顺利完成新税法个税系统切换及上线，保障新旧税制平稳过渡，个税计算逻辑符合政策要求并支撑后续稳定发薪及申报。` },
+                    images: []
+                },
+                proj4: {
+                    en: { title: 'Electronic Signature System Implementation for a Multinational Company', meta: 'Product & Implementation', desc: `Content:\n1. Researched the client's existing labor-contract and HR-document signing processes; documented document generation, sending, employee signing, company signing, archiving, and retrieval.\n2. Configured core capabilities including signing entities, templates, signing order, identity verification, signing rules, and document archiving.\n3. Tested electronic-signature business scenarios covering contract generation, signing initiation, identity verification, completion, exception handling, and file archiving.\n4. Wrote system operating instructions, delivered user training, and supported the production cutover and initial operations.\n\nAchievements:\nThe project launched successfully and entered production use, digitizing labor-contract and HR-document signing, reducing manual circulation and paper-document management costs, and improving signing and archiving efficiency.` },
+                    zh: { title: '外资企业电子签系统实施项目', meta: '产品兼实施', desc: `内容：\n1. 调研客户现有劳动合同及人事文件签署流程，梳理文件生成、发送、员工签署、企业签署、归档及查询等业务环节。\n2. 负责配置签署主体、签署模板、签署顺序、身份认证、签署规则及文件归档等核心功能。\n3. 负责电子签业务场景测试，覆盖合同生成、签署发起、身份验证、签署完成、异常处理及文件归档等流程。\n4. 编写系统操作说明并开展用户培训，协助完成上线切换及初期运营支持。\n\n业绩：\n项目成功上线并投入使用，实现劳动合同及人事文件签署流程线上化，减少人工流转和纸质文件管理成本，提升合同签署及归档效率。` },
+                    images: []
+                }
+            };
+
+            // ===== 分组 =====
+            const groups = {
+                education: ['edu1'],
+                experience: ['work1', 'work2', 'work3', 'work4'],
+                projects: ['proj1', 'proj2', 'proj3', 'proj4']
+            };
+
+            // ===== 项目配色 =====
+            const projectMeta = {
+                proj1: { color: '#a8b5a0', icon: 'fa-globe-asia', image: 'images/project-vietnam.png' },
+                proj2: { color: '#b5a6b6', icon: 'fa-calculator', image: 'images/project-payroll.png' },
+                proj3: { color: '#c4aa9f', icon: 'fa-file-invoice-dollar', image: 'images/project-tax.png' },
+                proj4: { color: '#9eafb2', icon: 'fa-file-signature', image: 'images/project-esign.png' }
+           };
+
+            // ===== 核心优势数据 =====
+            const teachingData = [
+                {
+                    id: 'strength2',
+                    en: { title: 'Product Delivery', desc: 'Six years of product management experience covering discovery, analysis, solution design, prototyping, development coordination, launch, and iteration.' },
+                    zh: { title: '持续的产品经验', desc: '6年产品经理经验，覆盖调研、需求分析、方案设计、原型、研发协同、上线与迭代，并能支持售前售后提供系统方案。' },
+                    image: 'images/strength-product.png',
+                    imageAlt: { en: 'Product manager working with charts and plans', zh: '产品经理处理图表和方案的插画' }
+                },
+                {
+                    id: 'strength3',
+                    en: { title: 'Applied AI & Independent Development', desc: 'Hands-on experience with PDF extraction, chunking, prompt optimization, Dify RAG, and independent mini-program development and deployment using Codex.' },
+                    zh: { title: 'AI产品落地与独立开发', desc: '掌握PDF提取、Chunk分段、Prompt调整和Dify RAG；使用Codex从0到1独立完成海外人力服务小程序开发与部署。' },
+                    image: 'images/strength-ai.png',
+                    imageAlt: { en: 'AI robot processing PDF, chunks, and code', zh: 'AI机器人处理PDF、Chunk和代码的插画' }
+                },
+                {
+                    id: 'strength4',
+                    en: { title: 'Project Execution', desc: 'Two to three years of implementation experience in domestic and emerging overseas markets, including large-scale projects such as Ctrip.' },
+                    zh: { title: '项目管理与落地', desc: '具备2-3年国内主流市场及东南亚、港澳台项目落地经验，包括携程等大型项目，熟悉HRIS与HR SaaS应用。' },
+                    image: 'images/strength-project.png',
+                    imageAlt: { en: 'Project manager reviewing a delivery plan', zh: '项目经理检查交付计划的插画' }
+                },
+                {
+                    id: 'strength5',
+                    en: { title: 'English Proficiency', desc: 'CET-4: 511; CET-6: 522; BEC Vantage; Shanghai Intermediate-level English Interpretation Certificate; national competition award.' },
+                    zh: { title: '英语能力', desc: '大学英语四级511分、六级522分、BEC剑桥商务英语中级、上海外语口译英语中级口译；全国大学生英语竞赛C类三等奖。' },
+                    image: 'images/strength-english.png',
+                    imageAlt: { en: 'Professional reading and learning languages', zh: '职场人士阅读并学习语言的插画' }
+                },
+                {
+                    id: 'strength6',
+                    en: { title: 'Continuous Learning', desc: 'Eight university scholarships, two Outstanding Student awards, a National Scholarship, and continued self-learning to move from HR operations into product management and AI.' },
+                    zh: { title: '持续学习能力', desc: '大学期间8次校奖学金、2次优秀学生，并获国家奖学金与国家励志奖学金；工作后持续学习并完成赛道转换。' },
+                    image: 'images/strength-learning.png',
+                    imageAlt: { en: 'Books, graduation cap, and academic award', zh: '书籍、学士帽和荣誉证书插画' }
+                },
+                {
+                    id: 'strength1',
+                    en: { title: 'Industry Insight', desc: 'Four years of HR operations experience across Mainland China, Greater China, and Southeast Asia, with a user-oriented view of HR systems.' },
+                    zh: { title: '深入的行业理解', desc: '4年HR业务背景，覆盖大陆、大中华与东南亚人力资源管理场景，理解相关法规、系统需求与用户动机。' },
+                    image: 'images/strength-industry.png',
+                    imageAlt: { en: 'Customer service specialist working online', zh: '在线工作的服务专员工作插画' }
+                }
+            ];
+
+            // ===== 技能数据 =====
+            const skillsData = {
+                en: [
+                    'Product Discovery & Requirements',
+                    'PRD & Product Roadmaps',
+                    'Project Delivery & Client Acceptance',
+                    'Cross-functional Collaboration',
+                    'PDF Extraction · Chunking · Prompt Optimization',
+                    'Codex-assisted Development & Deployment',
+                    'English (CET-4 511 · CET-6 522)',
+                    'BEC Vantage',
+                    'Intermediate English Interpretation'
+                ],
+                zh: [
+                    '产品调研与需求分析',
+                    'PRD与产品路线图',
+                    '项目交付与客户验收',
+                    '跨团队协作',
+                    'PDF提取 · Chunk分段 · Prompt优化',
+                    'Codex辅助开发与部署',
+                    '英语（四级511 · 六级522）',
+                    'BEC剑桥商务英语中级',
+                    '上海外语口译英语中级口译'
+                ]
+            };
+
+            // ===== 当前语言 =====
+            let currentLang = 'zh';
+
+            // ===== 渲染教育 & 经历 =====
+            function renderEntries(containerId, entryIds) {
+                const container = document.getElementById(containerId);
+                if (!container) return;
+                container.innerHTML = '';
+                entryIds.forEach(id => {
+                    const detail = entryDetails[id];
+                    if (!detail) return;
+                    const lang = currentLang;
+                    const data = detail[lang] || detail.en;
+                    const card = document.createElement('div');
+                    card.className = 'entry-card';
+                    card.setAttribute('data-entry', id);
+                    card.innerHTML = `
+                        <div class="title">${data.title}</div>
+                        <div class="meta"><span>${data.meta}</span></div>
+                        <div class="desc">${data.desc.substring(0, 80)}${data.desc.length > 80 ? '…' : ''}</div>
+                        <div class="click-hint"><i class="fas fa-mouse-pointer"></i> ${i18n[lang].card.details}</div>
+                    `;
+                    container.appendChild(card);
+                });
+            }
+
+            // ===== 渲染项目 =====
+            function renderProjects() {
+                const container = document.getElementById('projectsGrid');
+                if (!container) return;
+                container.innerHTML = '';
+                const ids = groups.projects;
+                ids.forEach(id => {
+                    const detail = entryDetails[id];
+                    if (!detail) return;
+                    const lang = currentLang;
+                    const data = detail[lang] || detail.en;
+                    const meta = projectMeta[id] || { color: '#e2dad5', icon: 'fa-star' };
+                    const card = document.createElement('div');
+                    card.className = 'work-card';
+                    card.setAttribute('data-entry', id);
+                    const coverHTML = meta.image
+                        ? `<img src="${meta.image}" alt="${data.title}" loading="lazy" />`
+                        : `<i class="fas ${meta.icon}"></i>`;
+                    card.innerHTML = `
+                        <div class="thumb" style="background: ${meta.color};">
+                            ${coverHTML}
+                        </div>
+                        <div class="info">
+                            <span class="tag">${i18n[lang].card.project}</span>
+                            <h4>${data.title}</h4>
+                            <p>${data.meta}</p>
+                            <p style="margin-top:6px; font-size:0.9rem; color:var(--text-light);">${data.desc.substring(0, 60)}${data.desc.length > 60 ? '…' : ''}</p>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            }
+
+            // ===== 渲染核心优势 =====
+ function renderTeaching() {
+    const container = document.getElementById('teachingContainer');
+    if (!container) return;
+    container.innerHTML = '';
+    teachingData.forEach(item => {
+        const lang = currentLang;
+        const data = item[lang] || item.en;
+        const card = document.createElement('div');
+        card.className = 'teaching-card';
+
+        const mediaHTML = item.image
+            ? `<div class="pdf-cover"><img src="${item.image}" alt="${item.imageAlt?.[lang] || data.title}" loading="lazy" /></div>`
+            : `<div class="pdf-cover"><i class="fas ${item.icon || 'fa-star'}"></i></div>`;
+        const descHTML = data.desc ? `<div class="desc">${data.desc}</div>` : '';
+
+        card.innerHTML = `
+            ${mediaHTML}
+            <div class="info">
+                <h4>${data.title}</h4>
+                ${descHTML}
+            </div>
+        `;
+        container.appendChild(card);
+    });
+}
+
+            // ===== 渲染技能 =====
+            function renderSkills() {
+                const container = document.getElementById('skillsContainer');
+                if (!container) return;
+                const lang = currentLang;
+                const skills = skillsData[lang] || skillsData.en;
+                container.innerHTML = '';
+                skills.forEach(skill => {
+                    const tag = document.createElement('span');
+                    tag.className = 'skill-tag';
+                    tag.textContent = skill;
+                    container.appendChild(tag);
+                });
+            }
+
+            // ===== 全部渲染 =====
+            function renderAll() {
+                renderEntries('educationGrid', groups.education);
+                renderEntries('experienceGrid', groups.experience);
+                renderProjects();
+                renderTeaching();
+                renderSkills();
+            }
+            
+
+            // ===== 更新语言 =====
+            function updateLanguage(lang) {
+                const data = i18n[lang];
+                if (!data) return;
+                document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+                document.title = lang === 'zh' ? '胡妍静 · 产品经理' : 'HU Yanjing · Product Manager';
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    const parts = key.split('.');
+                    let value = data;
+                    for (let p of parts) {
+                        if (value && value[p] !== undefined) value = value[p];
+                        else { value = null; break; }
+                    }
+                    if (value !== null && value !== undefined) {
+                        el.textContent = value;
+                    }
+                });
+                document.querySelectorAll('.lang-btn').forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.lang === lang);
+                });
+                currentLang = lang;
+                localStorage.setItem('preferredLang', lang);
+                renderAll();
+            }
+
+            // ===== 固定使用中文版本 =====
+            updateLanguage('zh');
+
+            // ===== 汉堡菜单 =====
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('navLinks');
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('open');
+                navLinks.classList.toggle('open');
+            });
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('open');
+                    navLinks.classList.remove('open');
+                });
+            });
+
+            // ===== 导航高亮 =====
+            const sections = document.querySelectorAll('section[id]');
+            const navAnchors = document.querySelectorAll('.nav-links a');
+            function updateActiveNav() {
+                let current = '';
+                const scrollY = window.scrollY + 120;
+                sections.forEach(sec => {
+                    const top = sec.offsetTop;
+                    const height = sec.offsetHeight;
+                    if (scrollY >= top && scrollY < top + height) {
+                        current = sec.getAttribute('id');
+                    }
+                });
+                navAnchors.forEach(a => {
+                    a.classList.remove('active');
+                    if (a.getAttribute('href') === '#' + current) {
+                        a.classList.add('active');
+                    }
+                });
+            }
+            window.addEventListener('scroll', updateActiveNav);
+            window.addEventListener('load', updateActiveNav);
+
+            // ===== 模态框 =====
+            const modalOverlay = document.getElementById('modalOverlay');
+            const modalClose = document.getElementById('modalClose');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalMeta = document.getElementById('modalMeta');
+            const modalDesc = document.getElementById('modalDesc');
+
+            function splitDetailSections(desc) {
+                const zhMatch = desc.match(/^(?:内容|职责|项目简述)：\s*\n?([\s\S]*?)\n\n业绩：\s*\n?([\s\S]*)$/);
+                if (zhMatch) return { content: zhMatch[1], achievement: zhMatch[2] };
+
+                const zhContentOnlyMatch = desc.match(/^(?:内容|职责|项目简述)：\s*\n?([\s\S]*)$/);
+                if (zhContentOnlyMatch) return { content: zhContentOnlyMatch[1], achievement: null };
+
+                const enMatch = desc.match(/^(?:Content|Responsibilities):\s*\n([\s\S]*?)\n\nAchievements?:\s*\n([\s\S]*)$/);
+                if (enMatch) return { content: enMatch[1], achievement: enMatch[2] };
+
+                const enContentOnlyMatch = desc.match(/^(?:Content|Responsibilities):\s*\n([\s\S]*)$/);
+                if (enContentOnlyMatch) return { content: enContentOnlyMatch[1], achievement: null };
+
+                return null;
+            }
+
+            function appendNumberedText(container, text) {
+                const items = text.trim().split(/\n(?=\d+\.\s)/);
+                items.forEach(item => {
+                    const paragraph = document.createElement('p');
+                    paragraph.className = 'numbered-item';
+                    paragraph.textContent = item;
+                    container.appendChild(paragraph);
+                });
+            }
+
+            function renderDetailSections(sections) {
+                modalDesc.replaceChildren();
+                [
+                    { key: 'content', label: '内容' },
+                    { key: 'achievement', label: '业绩' }
+                ].filter(item => sections[item.key]?.trim()).forEach(item => {
+                    const section = document.createElement('section');
+                    section.className = 'detail-section';
+                    const heading = document.createElement('h3');
+                    heading.className = 'detail-section-title';
+                    heading.textContent = item.label;
+                    const body = document.createElement('div');
+                    appendNumberedText(body, sections[item.key]);
+                    section.append(heading, body);
+                    modalDesc.appendChild(section);
+                });
+            }
+
+            function openModal(entryId) {
+                const detail = entryDetails[entryId];
+                if (!detail) return;
+                const lang = currentLang;
+                const data = detail[lang] || detail.en;
+                modalTitle.textContent = data.title;
+                modalMeta.innerHTML = data.meta;
+                const detailSections = splitDetailSections(data.desc);
+                if (detailSections) {
+                    renderDetailSections(detailSections);
+                } else {
+                    modalDesc.textContent = data.desc;
+                }
+                modalOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeModal() {
+                modalOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            // 点击卡片
+            document.addEventListener('click', function(e) {
+                const card = e.target.closest('.entry-card, .work-card');
+                if (card) {
+                    const entryId = card.getAttribute('data-entry');
+                    if (entryId) openModal(entryId);
+                }
+            });
+
+            modalClose.addEventListener('click', closeModal);
+            modalOverlay.addEventListener('click', function(e) {
+                if (e.target === this) closeModal();
+            });
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closeModal();
+            });
+
+        })();
+    </script>
+
+</body>
+</html>
